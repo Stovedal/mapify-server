@@ -27,7 +27,7 @@ SECRET_KEY = '-4herypcj0xjr*0)^k*@x&h^atlz@l&n(wuh7x9jxf-2^_mv=)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['https://mapifyserver.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['https://mapifyserver.herokuapp.com/', 'localhost', '127.0.0.1']
 
 
 # Application definition
