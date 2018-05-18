@@ -4,17 +4,13 @@ from graphene import relay, ObjectType, InputObjectType
 from graphql_relay.node.node import from_global_id
 from .models import MarkerModel
 
-
-
 class Marker(DjangoObjectType):
     class Meta:
         model = MarkerModel
 
 class MarkerInput(InputObjectType):
-    id=graphene.Int()
     longitude=graphene.Float()
     latitude=graphene.Float()
-    icon=graphene.String(required = False)
     song=graphene.String()
 
 class CreateMarker(graphene.Mutation):
@@ -26,14 +22,14 @@ class CreateMarker(graphene.Mutation):
         return CreateMarker(new_marker)
 
 class DeleteMarker(graphene.Mutation):
-    status = graphene.Boolean()
+    id = graphene.Int()
 
     class Arguments:
         id = graphene.Int()
 
     def mutate(self, info, id):
         MarkerModel.objects.filter(id=id).delete()
-        return DeleteMarker(True)
+        return DeleteMarker(id)
 
 
 class Mutation(ObjectType):
